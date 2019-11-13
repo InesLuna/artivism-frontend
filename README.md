@@ -1,68 +1,189 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ARTIVISM
 
-## Available Scripts
+The purspose of Artivism is to provide an environment where users can share and consult images and information about artistic activism actions happening around the world.
 
-In the project directory, you can run:
+### User Stories
 
-### `npm start`
+- **404** As an anon/user I can see a 404 page if I try toreach a page that does not exist so that I know is my fault.
+- **Landing** As an anon I can see a landig page with a call to action phrase and button.
+- **Signup** As an anon I can sign up in the platform so that I can start sharing posts and comment other users posts.
+- **Login** As an user I can login to have acces to all posts info and my user info.
+- **Logout** As a user I can logout from the platform.
+- **Posts view** As an anon/user I can see the principal components of a post: images, location, theme, date, call to action url, a a brief extract of the article. As a user I can also access to de author of the post information (other posts) and the detail view of the post.
+- **Search posts** As an anon/user I can search post about and specific theme, city or country.
+- **Add post** As a user I can add a new post and share with the community.
+- **Edit** As a user I can edit or delete my profile, my posts and my comments.
+- **Notifications** As a user I can see if some one has comment my post.
+- **See my posts** As a user I can see my posts.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### BackLog
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Posts
+- Got accés to the phone camera.
+- Add posts to favorites.
+- Add video.
 
-### `npm test`
+User
+- View favorites.
+- Friends list
+- Share posts with friends
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Client
 
-### `npm run build`
+### Routes & Pages
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- '/' - Landing (public)
+- '/login' - Log in (public)
+- '/signup' - Sign up (public)
+- '/posts' - Posts list page (public)
+- '/posts/:searchValue' - Posts list page (public)
+- '/posts/:id' - Post details (private)
+- '/posts/:id/edit' - Post edit (private, user only)
+- '/user/:id' - User view, user posts list (private)
+- '/user' - Loged user view
+- '/user/notifications'- User view, notifications about comments in user's posts (private, user only)
+- '/user/edit' - User info edit (private, user only)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Components
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**General**
+- Landing
+- Log in
+- Sing up
+- Top navbar
+- Bottom navbar
 
-### `npm run eject`
+**Post**
+- Post card
+- Post create form
+- Comment
+- Comment create form
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**User**
+- User general layout
+- User posts
+- User notification
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Services
+- Auth Service
+	- auth.login(user)
+	- auth.signup(user)
+	- auth.logout()
+	- auth.me()
+- User Service
+	- user.edit(id, data)
+	- user.delete(id)
+	- user.getUser(id)
+- Post Service
+	- post.list()
+	- post.create(data)
+	- post.edit(postId, data)
+	- post.delete(postId)
+	- post.detail(postId)
+	- post.getComment(postId)
+	- post.comment(data)
+	- post.editComment(commentId, data)
+	- post.deleteComment(commentId)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Server
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Models
 
-## Learn More
+User model
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   username: String // required & unique
+   aboutMe: String
+   email: String // required & unique
+   password: String // required, unique & min: 6
+   userImage: String // required
+   favorites: [ObjectID < post >]
+   createdAt: Date
+   deletedAt: Date
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Post model
 
-### Code Splitting
+   authorID: ObjectID < user > // required
+   theme: String // required
+   images: Array //required
+   city: String // required
+   country: String // required
+   textContent: String
+   makeThisHappend: String
+   createdAt: Date
+   deletedAt: Date
+   notificaions: Number
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Comments model
 
-### Analyzing the Bundle Size
+   postID: ObjectID < post > // required
+   authorID: ObjectID < user > // required
+   textContent: String // required
+   createdAt: Date
+   deletedAt: Date
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### API Endpoints/Backend Routes
 
-### Making a Progressive Web App
+- GET/auth/me
+- POST/auth/signup
+	- Body:
+		- username
+		- about me
+		- email
+		- password
+		- userImage
+- POST/auth/login
+	- body:
+		- username/email
+		- password
+- POST/auth/logout
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+**User endpoints/Routes**
 
-### Advanced Configuration
+- PUT/user/:id
+	- body
+		- username
+		- about me
+		- email
+		- password
+		- userImage
+- DELETE/user/:id
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+**Post Endpoint/Routes**
 
-### Deployment
+- GET/posts
+- GET/posts/:id
+- POST/posts/add
+	- body
+		- theme
+		- images
+		- city
+		- country
+		- makeThisHappen
+		- textContent
+- PUT/posts/:id/edit
+	- body
+		- theme
+		- images
+		- city
+		- country
+		- makeThisHappen
+		- textContent
+- DELETE/posts/:id/delete
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+**Comments Endpoint/Routes**
 
-### `npm run build` fails to minify
+- GET/posts/:id/comments
+- POST/comment/add
+	- body
+		- textContent
+- PUT/comment/:id/edit
+	- body
+		- textContent
+- DELETE/comment/:id/delete
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Links
+**Trello**
+
+**Git**
+[Client repository Link](http://https://github.com/InesLuna/artivism-frontend "Client repository Link")
+[Server repository Link](http://https://github.com/InesLuna/artivism-backend "Server repository Link")
