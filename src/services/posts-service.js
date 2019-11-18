@@ -11,15 +11,18 @@ class Post {
     getAllPosts(){
         return this.post.get("/posts/").then( (response) => response.data);
     }
+    getUserPosts(){
+        return this.post.get("posts/user/posts").then( (response) => response.data);
+    }
 
     getOnePost(postId){
         return this.post.get(`/posts/${postId}`).then( (response) => response.data);
     }
 
     createPost(post) {
-        const { author, theme, city,country, textContent, makeThisHappend } = post;
+        const { author, theme, city, country, textContent, makeThisHappend, userImage } = post;
         return this.post
-          .post("/posts/create", { author, theme, city,country, textContent, makeThisHappend})
+          .post("/posts/create", { author, theme, city, country, textContent, makeThisHappend, userImage})
           .then(({ data }) => data);
     }
 
