@@ -38,15 +38,17 @@ class CommentForm extends Component {
     render() {
       const { textContent } = this.state;
       return (
-        <div>
-          <form onSubmit={this.handleFormSubmit}>
+    
+          <form onSubmit={this.handleFormSubmit} className='commentFormContainer'>
               <div className='inpLab'>
                   <label>Write your comment here</label>
-                  <textarea name="textContent" cols="30" rows="5" value={textContent} onChange={this.handleChange}></textarea>
+                  <textarea name="textContent" cols="45" rows="5" value={textContent} onChange={this.handleChange}></textarea>
               </div>
-            <input type="submit" value="Comment" />
+              <div className='submit-container'>
+                <input type="submit" value="Comment" className='submit-inp'/>
+              </div>
           </form>
-        </div>
+       
       );
     }
 }

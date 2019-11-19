@@ -11,7 +11,7 @@ import PostCard from '../components/PostCard';
      async componentDidMount(){
         postService.getAllPosts()
         .then(response => {
-            console.log(response)
+          //  console.log(response)
            this.setState({ posts: response });
         })
         .catch(err => {
@@ -21,7 +21,7 @@ import PostCard from '../components/PostCard';
 
     render() {
         const {posts} = this.state
-        console.log(posts)
+      //  console.log(posts)
         return (
             <>
                 {

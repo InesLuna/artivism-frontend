@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { withAuth } from "../services/AuthProvider";
 import CommentForm from '../components/CommentForm';
 import postService from '../services/posts-service';
-import PostCard from '../components/PostCard';
 import CommentCard from '../components/CommentCard';
+import Moment from 'moment'
 
 
 class PostDetails extends Component {
@@ -21,20 +21,54 @@ class PostDetails extends Component {
     }
 
     render() {
-        const {post, comments} = this.state
-        console.log(comments)
+        const { _id, post, comments}= this.state;
+        console.log(this.state)
+        //console.log(comments)
         return (
             <>
             {
                 post ?  <div> 
-                            <PostCard post = {post}/> 
-                            <CommentForm post = {post}/> 
-                            { 
-                            comments.map((comment, index)=>{
-                              return ( <CommentCard key={index} comment={comment}/> )
-                            })
-                            }
-                        </div> 
+                <article className='postContainer'>
+                    <div className='colorUserInfo'></div>
+
+                    <div className='userInfo'>   
+                        <figure><img src={post.author.userImage} alt=""/></figure>
+                        <h2> {post.author.username} </h2>
+                    </div> 
+
+                    <figure>
+                        <img src={post.userImage} alt=""/>
+                    </figure>
+
+                    <div className='colorContent'></div>
+
+                    <div className='contentContainer'>
+                        <h2>{post.theme}</h2>
+                        <div className='infoDiv'>
+                            <p><strong>{post.city}</strong>, {post.country}</p>
+                            <p className='date'>{Moment(post.created_at).format('L')}</p>
+                        </div>
+                        {post.textContent ?
+                        <div className='textContentDetailView'><p><strong>{post.author.username}</strong> {post.textContent}</p></div>
+                        : null
+                        }
+                        { post.makeThisHappend ?
+                            <div className='makecontainer'>
+                                <div className='colorMake'></div>
+                                <p className='makeThisHappend'><strong>Make the change happen:</strong><br/><a href={post.makeThisHappend}>{post.makeThisHappend}</a></p>
+                            </div>
+                            : null
+                        }
+                    </div>
+                    <CommentForm post = {post}/> 
+                    { comments ?
+                        comments.map((comment, index)=>{
+                        return (<section className='commentContainer'> <CommentCard key={index} comment={comment} /></section> )  
+                    }): <p>Loading...</p>
+                    }
+                </article>
+    
+                 </div> 
                 : <p>Loading...</p>
             }
             </>

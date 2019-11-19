@@ -7,7 +7,8 @@ class UserPosts extends Component {
     state = {
         posts: null,
     }
-    async componentDidMount(){
+    componentDidMount(){
+      
         postService.getUserPosts()
         .then(response => {
             console.log(response)

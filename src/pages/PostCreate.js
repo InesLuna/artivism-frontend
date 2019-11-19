@@ -27,6 +27,7 @@ class PostCreate extends Component {
             textContent: "", 
             makeThisHappend: ""
         })}
+        this.props.history.goBack()
       });
   };
 

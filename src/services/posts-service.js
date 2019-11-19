@@ -3,7 +3,7 @@ import axios from "axios";
 class Post {
     constructor() {
         this.post = axios.create({
-        baseURL: "http://localhost:4000",
+        baseURL: process.env.REACT_APP_API_URI,
         withCredentials: true
         });
     }
@@ -12,7 +12,7 @@ class Post {
         return this.post.get("/posts/").then( (response) => response.data);
     }
     getUserPosts(){
-        return this.post.get("posts/user/posts").then( (response) => response.data);
+        return this.post.get("/posts/user/posts").then( (response) => response.data);
     }
 
     getOnePost(postId){
