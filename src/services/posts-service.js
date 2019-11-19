@@ -47,10 +47,10 @@ class Post {
         .get(`/posts/${postId}/comments`).then( (response) => response.data);
     }
 
-    createComment(postId, comment) {
-        const { textContent } = comment;
+    createComment(postId, textContent) {
+        console.log(textContent)  
         return this.post
-          .post(`/posts/${postId}/create`, { textContent})
+          .post(`/posts/${postId}/create`, {textContent})
           .then(({ data }) => data);
     }
 

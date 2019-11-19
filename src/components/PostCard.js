@@ -9,14 +9,14 @@ import {Link} from 'react-router-dom'
         const {author, userImage, theme, city, country, date, textContent, makeThisHappend, _id}= this.props.post;
 
         return (
-            <article>
-                <div>
-                   <img src={author.userImage} alt=""/>
+            <article className='postContainer'>
+                <div className='userInfo'>
+                    <figure><img src={author.userImage} alt=""/></figure>
                     <h2> {author.username} </h2>
                 </div> 
-                <div>
+                <figure>
                     <img src={userImage} alt=""/>
-                </div>
+                </figure>
                 <div>
                     <h3>{theme}</h3>
                     <p><strong>{city}</strong>, {country}</p>

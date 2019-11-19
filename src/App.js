@@ -12,6 +12,7 @@ import PostCreate from './pages/PostCreate'
 import PostsView from './pages/PostsView'
 import PostDetails from './pages/PostDetails'
 
+
 import NotFound from './pages/NotFound'
 
 import UserPosts from './pages/UserPosts'
@@ -27,7 +28,8 @@ class App extends Component {
   render() {
     return (
       <Router> 
-        <AuthProvider>   
+        <AuthProvider>
+          
           <Switch>
             <Route path="/" exact component={Landing} />
             <AnonRoute path="/signup" exact component={Signup} />

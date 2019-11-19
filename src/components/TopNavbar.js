@@ -4,8 +4,8 @@ import { withAuth } from "../services/AuthProvider";
 
 const TopNavbar = () => {
     return (
-        <nav>
-            <p>LOGO</p>
+        <nav className='topNavbar'>
+            <img src="/images/artivism-logo-ag.svg" alt=""/>
         </nav>
     )
 }

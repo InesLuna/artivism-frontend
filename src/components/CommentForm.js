@@ -16,7 +16,7 @@ class CommentForm extends Component {
       event.preventDefault();
       const { textContent } = this.state;
   
-        postService.createComment({ textContent })
+        postService.createComment( this.props.post._id, textContent )
         .then(post => {
           if(this._isMounted){
           this.setState({ 
@@ -44,7 +44,7 @@ class CommentForm extends Component {
                   <label>Write your comment here</label>
                   <textarea name="textContent" cols="30" rows="5" value={textContent} onChange={this.handleChange}></textarea>
               </div>
-            <input type="submit" value="Signup" />
+            <input type="submit" value="Comment" />
           </form>
         </div>
       );

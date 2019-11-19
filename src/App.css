@@ -11,26 +11,127 @@ body{
     font-size: 10px;
 }
 
+/*LANDING PAGE*/
+
 .landingContainer{
-    background-image: url('/images/5977.jpg');
-    background-repeat: no-repeat;
-    background-size: 100vh;
-    overflow: hidden;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.landingContainer h1{
-    color: #fff;
+
+
+.landingContainer>img{
+    width: 80%;
+    z-index: 1;
 }
+
 .landingContainer p{
-    color: #fff;
+    color: rgb(66,66,66);
     font-size: 1.02rem;
     font-weight: 400;
     margin: 30px;
-    background-color: rgba(0, 0, 0, 0.6); 
     line-height: 25px;
-    padding: 10px;
+}
+
+.colorDivOne{
+    margin-top: -20px;
+    height: 30px;
+    width: 95%;
+    background-color: black;
+    align-self: flex-start;
+}
+
+.colorDivTwo{
+    height: 30px;
+    width: 95%;
+    background-color: black;
+    align-self: flex-end;
+}
+.btn-container{
+    border: 3px solid  rgb(255, 238, 88);
+    margin-top: 30px;
+}
+.btn-container>button{
+    background-color:  rgb(255, 238, 88);
+    margin: 5px;
+    padding: 20px 30px;
+    border: none;
+    cursor: pointer;
+}
+.btn-container>button>a{
+    color:rgb(66,66,66);
+    text-decoration: none; 
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.landingContainer>p>a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+/*TOP NAVBAR*/
+
+.topNavbar{
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    width: 100vw;
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.21);
+    margin-bottom: 40px;
+}
+.topNavbar>img{
+    width: 30%;
+    margin: 10px auto 10px 10px;
+}
+
+/*POST CARD*/
+
+.postContainer{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: center;
+    margin-top: 80px;
+}
+
+/*user info*/
+
+.userInfo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: auto 25px 25px;
+}
+
+.userInfo>figure{
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    border: 3px solid rgb(66,66,66);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.userInfo>figure>img{
+    height: 100%;
+}
+
+.userInfo>h2{
+    font-size: 1.2rem;
+}
+/*images*/
+.postContainer>figure{
+    display: flex;
+    justify-content: center;
+    width: 95%;
+}
+.postContainer>figure>img{
+    width: 95%;
 }

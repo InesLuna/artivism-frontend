@@ -13,7 +13,7 @@ function PrivateRoute({ component: Component, isLoggedIn, ...rest }) {
   return (
    <Route
     {...rest}
-    render={ (props)  => isLoggedIn ?<> <TopNavbar /> <Component {...props} /><BottomNavbar/> </>: <Redirect to="/login" />}
+    render={ (props)  => isLoggedIn ?<> <TopNavbar />  <Component {...props} /><BottomNavbar/> </>: <Redirect to="/login" />}
    />
   );
 }
