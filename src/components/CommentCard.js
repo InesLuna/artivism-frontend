@@ -4,7 +4,7 @@ import Moment from 'moment'
 
 const CommentCard = (props) => {
     const {author, textContent, created_at} = props.comment
-    console.log(props.comment)
+  //  console.log(props.comment)
     return (
         <div className='commentCard'>
             <div>

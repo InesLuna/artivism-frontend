@@ -22,7 +22,7 @@ class PostDetails extends Component {
 
     render() {
         const { _id, post, comments}= this.state;
-        console.log(this.state)
+       // console.log(this.state)
         //console.log(comments)
         return (
             <>
