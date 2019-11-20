@@ -92,8 +92,9 @@ class PostCreate extends Component {
   render() {
     const { theme, city, country, textContent, makeThisHappend, userImage, filenames } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
+      <>
+        <form onSubmit={this.handleFormSubmit} className='createPost'>
+            <h2 className='inpLab'>Add a new post</h2>
             <div className='inpLab'>
               <FileUploader
               accept="image/*"
@@ -142,9 +143,12 @@ class PostCreate extends Component {
                 <label>Make this change happend</label>
                 <input type="text" name="makeThisHappend" value={makeThisHappend} onChange={this.handleChange} placeholder="url" />
           </div>
-          <input type="submit" value="Create" />
+          <div className='btnFormContainer inpLab'>
+            <input type="submit" value="Create" />
+          </div>
+          
         </form>
-      </div>
+      </>
     );
   }
 }

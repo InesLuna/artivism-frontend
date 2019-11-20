@@ -3,7 +3,8 @@ import { withAuth } from "../services/AuthProvider";
 import CommentForm from '../components/CommentForm';
 import postService from '../services/posts-service';
 import CommentCard from '../components/CommentCard';
-import Moment from 'moment'
+import Moment from 'moment';
+import Slider from "react-slick";
 
 
 class PostDetails extends Component {
@@ -28,9 +29,14 @@ class PostDetails extends Component {
     }
 
     render() {
-        const { _id, post, comments}= this.state;
-       // console.log(this.state)
-        //console.log(comments)
+        const { post, comments}= this.state;
+        const settings = {
+            dots: true,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        };
         return (
             <>
             {
@@ -42,11 +48,21 @@ class PostDetails extends Component {
                         <figure><img src={post.author.userImage} alt=""/></figure>
                         <h2> {post.author.username} </h2>
                     </div> 
-
-                    <figure>
-                        <img src={post.userImage} alt=""/>
-                    </figure>
-
+                </article>
+                <Slider {...settings} >
+                {
+                    post.userImage.map((img, index)=>{
+                        return (
+                            <div key={index} className='carouselImageContainer'>
+                                <img src={img} alt=""/>
+                            </div>
+                        )
+                    })
+                }
+                    
+                </Slider>
+                <article className='postContainer'>
+                    
                     <div className='colorContent'></div>
 
                     <div className='contentContainer'>

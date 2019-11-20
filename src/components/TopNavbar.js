@@ -4,10 +4,15 @@ import {Link} from 'react-router-dom'
 
 
 const TopNavbar = (props) => {
+   console.log(props)
     return (
         <nav className='topNavbar'>
             <img src="/images/artivism-logo-ag.svg" alt=""/>
-            <Link onClick={props.logout} to='/'>Logout</Link>
+            {
+                props.needLogout ? <Link onClick={props.logout} to='/'>Logout</Link> : null
+            }
+            
+
         </nav>
     )
 }

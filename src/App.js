@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AuthProvider from "./services/AuthProvider";
+//css import
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import './App.css';
 //import components
 
@@ -47,8 +50,8 @@ class App extends Component {
             <PrivateRoute path="/posts/create" exact component={PostCreate}/> 
             <PrivateRoute path="/posts/details/:id" exact component={PostDetails}/> 
 
-            <UserRoute path="/user/posts" exact component={UserPosts}/> 
-            <UserRoute path="/user/notifications" exact component={UserNotifications}/> 
+            <UserRoute path="/user/posts" exact component={UserPosts} /> 
+            <UserRoute path="/user/notifications" exact component={UserNotifications} /> 
             <Route component={NotFound} />
           </Switch>
         </AuthProvider>
