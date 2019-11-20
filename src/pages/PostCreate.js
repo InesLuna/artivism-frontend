@@ -1,11 +1,22 @@
 import React, { Component } from "react";
 import { withAuth } from "../services/AuthProvider";
-import service from '../services/cloud-service'
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
 import postService from '../services/posts-service'
 
 class PostCreate extends Component {
   _isMounted = false
-  state = { userImage: '', theme: "", city: "", country: "", textContent: "", makeThisHappend: "" };
+  state = { 
+    filenames: [],
+    userImage: [],
+
+    isUploading: false,
+    uploadProgress: 0, 
+    theme: "", 
+    city: "", country: "", 
+    textContent: "", 
+    makeThisHappend: "" 
+  };
 
   componentDidMount(){
     this._isMounted = true
@@ -20,7 +31,10 @@ class PostCreate extends Component {
       .then(post => {
         if(this._isMounted){
         this.setState({
-            userImage: '', 
+            filenames: [],
+            userImage: [],
+            isUploading: false,
+            uploadProgress: 0, 
             theme: "", 
             city: "", 
             country: "", 
@@ -31,22 +45,39 @@ class PostCreate extends Component {
       });
   };
 
- handleFileUpload = e => {
-    console.log("The file to be uploaded is: ", e.target.files[0]);
-
-    const uploadData = new FormData();
-    
-    uploadData.append("userImage", e.target.files[0]);
-
-    service.handleUpload(uploadData)
-        .then(response => {
-          if(this._isMounted){
-            this.setState({ userImage: [response.secure_url] });}
-        })
-        .catch(err => {
-            console.log("Error while uploading the file: ", err);
-        });
-} 
+  handleUploadStart = () =>
+    this.setState({
+      isUploading: true,
+      uploadProgress: 0
+    });
+ 
+  handleProgress = progress =>
+    this.setState({
+      uploadProgress: progress
+    });
+ 
+  handleUploadError = error => {
+    this.setState({
+      isUploading: false
+      // Todo: handle error
+    });
+    console.error(error);
+  };
+ 
+  handleUploadSuccess = async filename => {
+    const downloadURL = await firebase
+      .storage()
+      .ref("posts")
+      .child(filename)
+      .getDownloadURL();
+      if(this._isMounted){
+        this.setState(oldState => ({
+          filenames: [...oldState.filenames, filename],
+          userImage: [...oldState.userImage, downloadURL],
+          uploadProgress: 100,
+          isUploading: false
+    }));}
+  };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -59,12 +90,32 @@ class PostCreate extends Component {
   }
 
   render() {
-    const { theme, city, country, textContent, makeThisHappend } = this.state;
+    const { theme, city, country, textContent, makeThisHappend, userImage, filenames } = this.state;
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
             <div className='inpLab'>
-                <input  type="file" onChange={this.handleFileUpload } />
+              <FileUploader
+              accept="image/*"
+              name="image-uploader-multiple"
+              randomizeFilename
+              storageRef={firebase.storage().ref("posts")}
+              onUploadStart={this.handleUploadStart}
+              onUploadError={this.handleUploadError}
+              onUploadSuccess={this.handleUploadSuccess}
+              onProgress={this.handleProgress}
+              multiple
+            />
+  
+              <p>Progress: {this.state.uploadProgress}</p>
+      
+              <p>Filenames: {filenames.join(", ")}</p>
+      
+              <div>
+                {userImage.map((downloadURL, i) => {
+                  return <img key={i} src={downloadURL} />;
+                })}
+              </div>
             </div>
 
             <div className='inpLab'>

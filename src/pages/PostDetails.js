@@ -12,6 +12,13 @@ class PostDetails extends Component {
         comments: null
     }
 
+    updateComments=(comment)=>{
+        const comments= this.state.comments
+        console.log(comments)
+        comments.unshift(comment)
+      
+        this.setState({comments: comments})
+    }
     
    async componentDidMount(){
         const postId = this.props.match.params.id
@@ -60,7 +67,7 @@ class PostDetails extends Component {
                             : null
                         }
                     </div>
-                    <CommentForm post = {post}/> 
+                    <CommentForm post = {post} updateComments = {this.updateComments}/> 
                     { comments ?
                         comments.map((comment, index)=>{
                         return (<section className='commentContainer'> <CommentCard key={index} comment={comment} /></section> )  

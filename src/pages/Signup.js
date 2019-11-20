@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../services/AuthProvider";
-import service from '../services/cloud-service'
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
 
 class Signup extends Component {
   _isMounted = false
-  state = { username: "", aboutMe: "", email: "", password: "", userImage: "" };
+  state = { username: "", 
+            aboutMe: "", 
+            email: "", 
+            password: "", 
+            avatar: "",
+            isUploading: false,
+            progress: 0,
+            userImage: "" };
 
   componentDidMount(){
     this._isMounted = true
@@ -13,9 +21,14 @@ class Signup extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     const { username, password, aboutMe, email, userImage } = this.state;
+    //console.log(userImage)
     //console.log('Signup -> form submit', { username, password });
+    const data = {
+      username, password, aboutMe, email, userImage
+    } 
+    console.log(data)
     this.props
-      .signup({ username, password, aboutMe, email, userImage })
+      .signup(data)
       .then(user => {
         if(this._isMounted){
         this.setState({
@@ -23,27 +36,37 @@ class Signup extends Component {
           aboutMe: "", 
           email: "", 
           password: "",
+          avatar: "",
+          isUploading: false,
+          progress: 0,
           userImage: ""
         })}
       });
   };
 
- handleFileUpload = e => {
-    console.log("The file to be uploaded is: ", e.target.files[0]);
+  handleChangeUsername = event =>
+    this.setState({ username: event.target.value });
+  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+  handleProgress = progress => this.setState({ progress });
+  handleUploadError = error => {
+    this.setState({ isUploading: false });
+    console.error(error);
+  };
 
-    const uploadData = new FormData();
+  handleUploadSuccess = filename => {
+    this.setState({ avatar: filename, progress: 100, isUploading: false });
     
-    uploadData.append("userImage", e.target.files[0]);
-
-    service.handleUpload(uploadData)
-        .then(response => {
-          if(this._isMounted){
-            this.setState({ userImage: response.secure_url });}
-        })
-        .catch(err => {
-            console.log("Error while uploading the file: ", err);
-        });
-} 
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url =>{
+        console.log(url) 
+        this.setState({ userImage: url })
+        console.log(this.state)
+      });
+  };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -81,7 +104,19 @@ class Signup extends Component {
             </div>
             
             <div className='inpLab'>
-                <input type="file" onChange={this.handleFileUpload } />
+            <label>Avatar:</label>
+              {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+              {this.state.userImage && <img src={this.state.userImage} />}
+              <FileUploader
+                accept="image/*"
+                name="userImage"
+                randomizeFilename
+                storageRef={firebase.storage().ref("images")}
+                onUploadStart={this.handleUploadStart}
+                onUploadError={this.handleUploadError}
+                onUploadSuccess={this.handleUploadSuccess}
+                onProgress={this.handleProgress}
+              />
             </div>
 
           <input type="submit" value="Signup" />

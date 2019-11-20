@@ -13,16 +13,19 @@ class CommentForm extends Component {
     }
   
     handleFormSubmit = event => {
+
       event.preventDefault();
       const { textContent } = this.state;
   
         postService.createComment( this.props.post._id, textContent )
-        .then(post => {
+        .then(comment => {
+         // console.log(comment)
           //console.log(this.props.post)
           if(this._isMounted){
           this.setState({ 
               textContent: "", 
           })}
+          this.props.updateComments(comment)
         });
         
     };
