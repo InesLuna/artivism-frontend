@@ -144,12 +144,15 @@ a{
 
 /*POST CARD*/
 
+.postsViewContainer{
+    padding-top: 100px;
+}
+
 .postContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
     margin-bottom: 80px;
     height: max-content;
 }

@@ -26,7 +26,7 @@ import ScrollUpButton from "react-scroll-up-button";
       //  console.log(posts)
         
         return (
-            <div>
+            <div className='postsViewContainer'>
                 <ScrollUpButton ContainerClassName="ScrollUpButton__Container" TransitionClassName="ScrollUpButton__Toggled">
                     {/* // Here you can add any react component or jsx
                     // ScrollButton will apply the classnames given to the container of whatever you put here.
