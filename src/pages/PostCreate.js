@@ -20,7 +20,7 @@ class PostCreate extends Component {
 
   componentDidMount(){
     this._isMounted = true
-    console.log("mounted")
+    //console.log("mounted")
   }
 
   handleFormSubmit = event => {

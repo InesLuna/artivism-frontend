@@ -40,6 +40,9 @@ class Post {
           .then(({data}) => data);
     }
 
+    search(terms){
+        return this.post.get('/posts/search').then( (response) => response.data);
+    }
     //COMMENTS ROUTES
 
     getAllComments(postId){
