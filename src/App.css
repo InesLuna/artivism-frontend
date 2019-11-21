@@ -496,6 +496,7 @@ background-color: rgb(244, 215, 99);
     font-weight: 800;
    
 }
+
 #inputFile{
     display: none;
 }
@@ -542,6 +543,9 @@ background-color: rgb(244, 215, 99);
     width: 100%;
     margin-bottom: 10px;
     font-weight: 800;
+}
+.inpLab>img{
+    max-width: 50px;
 }
 .signupContainer{
     padding: 15px;
