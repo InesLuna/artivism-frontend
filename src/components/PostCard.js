@@ -38,7 +38,7 @@ import Slider from "react-slick";
                 }
                     
             </Slider>
-            <article className='postContainer'>  
+            <article className='postContainer secondPostContainer'>  
                 <div className='colorContent'></div>
                 <div className='contentContainer'>
                     <h2>{theme}</h2>

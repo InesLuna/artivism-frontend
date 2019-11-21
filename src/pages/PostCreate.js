@@ -93,9 +93,11 @@ class PostCreate extends Component {
     const { theme, city, country, textContent, makeThisHappend, userImage, filenames } = this.state;
     return (
       <>
+        <div className='colorCreate'></div>
         <form onSubmit={this.handleFormSubmit} className='createPost'>
             <h2 className='inpLab'>Add a new post</h2>
             <div className='inpLab'>
+            <label htmlFor="inputFile" className='inputFileLabel'>Upload Images</label>
               <FileUploader
               accept="image/*"
               name="image-uploader-multiple"
@@ -106,6 +108,7 @@ class PostCreate extends Component {
               onUploadSuccess={this.handleUploadSuccess}
               onProgress={this.handleProgress}
               multiple
+              id='inputFile'
             />
   
               <p>Progress: {this.state.uploadProgress}</p>

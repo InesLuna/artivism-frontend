@@ -13,9 +13,6 @@ const Landing = () => {
             <div className='btn-container'>
                 <button><Link to="/signup" >Be a part of the revolution</Link></button>
             </div>
-            
-           
-            <p>View the <Link to='/posts'>posts</Link></p>
         </div>
     )
 }

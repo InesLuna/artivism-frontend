@@ -10,6 +10,7 @@ import ScrollUpButton from "react-scroll-up-button";
      state = {
         posts:null,
         terms: '',
+        postsCopy: null
      }
 
      async componentDidMount(){
@@ -17,7 +18,8 @@ import ScrollUpButton from "react-scroll-up-button";
         postService.getAllPosts()
         .then(response => {
           //  console.log(response)
-           this.setState({ posts: response });
+           this.setState({ posts: response,
+        postsCopy: response });
         })
         .catch(err => {
             console.log("Error finding posts ", err);
@@ -33,35 +35,32 @@ import ScrollUpButton from "react-scroll-up-button";
     handleFormSubmit = event => {
         event.preventDefault();
         const { terms } = this.state;
-        console.log(terms)
-          postService.search( terms )
-          .then(response => {
-              console.log(response)
-            if(this._isMounted){
-            this.setState({
-                posts: response
-            })}
-            /* this.props.history.goBack() */
-          });
+        
+        const allPosts = [...this.state.posts]
+        const filterPosts = allPosts.filter(post => post.theme.includes(terms) || post.country.includes(terms)  || post.city.includes(terms))
+        this.setState(
+            {postsCopy: filterPosts}
+        )
       };
 
 
     render() {
-        const {posts, terms} = this.state
+        const {postsCopy, terms} = this.state
       //  console.log(posts)
         
         return (
            
             <div className='postsViewContainer'>
                 <ScrollUpButton ContainerClassName="goToTopBtnContainer" TransitionClassName="transition">
-                  <p >Top</p>
+                  <img src="/images/5859828701572430747.svg" alt=""/>
                 </ScrollUpButton>
-                <form onSubmit={this.handleFormSubmit} className='searchForm' >
+                <div className='colorSearchBar'></div>
+                <form onSubmit={this.handleFormSubmit} className='searchForm' >   
                     <input  type="text" name="terms"  value={terms} onChange={this.handleChange}  placeholder="Search..." />
-                    <input type="submit" value="search" />
+                    <button type='submit'><img src="/images/5036916221558965373.svg" alt=""/></button>
                 </form>
                 {
-                    posts ? posts.map((post, index)=>{
+                    postsCopy ? postsCopy.map((post, index)=>{
                         return (
                             < PostCard post= {post} key={index}/>
                         )

@@ -21,8 +21,13 @@ class Login extends Component {
     const { username, password } = this.state;
 
     return (
-        <div className="formContainer" >
-            <form onSubmit={this.handleFormSubmit}>
+      <>
+        <Link to='/' ><img src="/images/9149026111572430742.svg" alt="" className='linkToLanding'/></Link>
+        <div className='signupContainer'>
+            <form onSubmit={this.handleFormSubmit} className='SignupForm'>
+              <div className='inpLab'>
+                <img src="/images/artivism-logo-ag.svg" alt=""/>
+              </div>
                 <div className='inpLab'>
                     <label>Username</label>
                     <input type="text" name="username" value={username} onChange={this.handleChange} placeholder="MyUsername" />
@@ -31,10 +36,13 @@ class Login extends Component {
                     <label>Password</label>
                     <input type="password" name="password" value={password} onChange={this.handleChange} placeholder="******" />
                 </div>
-                <input type="submit" value="Login" />
+                <div className='inpLab btn-container'>
+                  <input type="submit" value="Login" className='btnSignup'/>
+                </div>
             </form>
-            <Link to={"/signup"}>Not a member? <span>Sign up</span></Link>
+            <Link to={"/signup"}>Not a member? <strong>Sign up</strong></Link>
         </div>
+        </>
     );
   }
 }

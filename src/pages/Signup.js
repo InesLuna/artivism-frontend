@@ -81,10 +81,16 @@ class Signup extends Component {
   render() {
     const { username, password, aboutMe, email } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
+      <>
+      <Link to='/' ><img src="/images/9149026111572430742.svg" alt="" className='linkToLanding'/></Link>
+      <div className='signupContainer'>
+        
+        <form onSubmit={this.handleFormSubmit} className='SignupForm'>
             <div className='inpLab'>
-                <label>Username<span>*</span></label>
+                <img src="/images/artivism-logo-ag.svg" alt=""/>
+              </div>
+            <div className='inpLab'>
+                <label>Username<strong>*</strong></label>
                 <input type="text" name="username" value={username} onChange={this.handleChange} placeholder='MyUsername'/>
             </div>
 
@@ -94,17 +100,17 @@ class Signup extends Component {
             </div>
           
             <div className='inpLab'>
-                <label>Email<span>*</span></label>
+                <label>Email<strong>*</strong></label>
                 <input type="text" name="email" value={email} onChange={this.handleChange} placeholder="aaa@aaa.com" />
             </div>
           
             <div className='inpLab'>
-                <label>Password<span>*</span></label>
+                <label>Password<strong>*</strong></label>
                 <input type="password" name="password" value={password} onChange={this.handleChange} placeholder="******" />
             </div>
             
             <div className='inpLab'>
-            <label>Avatar:</label>
+            <label htmlFor="inputAvatar" className='inputFileAvatar'>Upload an avatar</label>
               {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
               {this.state.userImage && <img src={this.state.userImage} />}
               <FileUploader
@@ -116,13 +122,17 @@ class Signup extends Component {
                 onUploadError={this.handleUploadError}
                 onUploadSuccess={this.handleUploadSuccess}
                 onProgress={this.handleProgress}
+                id='inputAvatar'
               />
             </div>
-
-          <input type="submit" value="Signup" />
+            <div className='inpLab btn-container'>
+              <input type="submit" value="Signup" className='btnSignup'/>
+            </div>
+          
         </form>
-        <Link to={"/login"}>Already a member? <span>Login</span></Link>
+        <Link to={"/login"}>Already a member? <strong>Login</strong></Link>
       </div>
+      </>
     );
   }
 }

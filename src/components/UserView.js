@@ -1,9 +1,30 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import postService from '../services/posts-service';
 
 import { withAuth } from "../services/AuthProvider";
 
  class UserView extends Component {
+    state ={
+        posts: null
+    }
+
+    async componentDidMount(){
+        postService.getUserPosts()
+        .then(response => {
+            
+            const notifyPosts = response.filter(post => {
+                if(post.notifications > 0){
+                    return post
+                }
+            })
+            //console.log(notifyPosts)
+           this.setState({ posts: notifyPosts });
+        })
+        .catch(err => {
+            console.log("Error finding posts ", err);
+        });
+    }
      
     render() {
         console.log(this.props)
@@ -23,7 +44,11 @@ import { withAuth } from "../services/AuthProvider";
                 
                 <nav>
                     <Link to='/user/posts'><img src="/images/20068463741530177263.svg" alt=""/></Link>
-                    <Link to='/user/notifications'>Notifications</Link>
+                    {this.state.posts ? 
+                        <Link to='/user/notifications' className='notificationIcon'><img src='/images/notifications.svg' alt="" /></Link> 
+                        : <Link to='/user/notifications' className='notificationIcon'><img src='/images/notifications.svg' alt=""/></Link> 
+                    }
+                    
                 </nav>
             </div>
         )
