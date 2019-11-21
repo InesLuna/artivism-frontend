@@ -34,8 +34,9 @@ import ScrollUpButton from "react-scroll-up-button";
         event.preventDefault();
         const { terms } = this.state;
         console.log(terms)
-          postService.search({ terms })
+          postService.search( terms )
           .then(response => {
+              console.log(response)
             if(this._isMounted){
             this.setState({
                 posts: response

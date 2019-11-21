@@ -41,7 +41,12 @@ class Post {
     }
 
     search(terms){
-        return this.post.get('/posts/search').then( (response) => response.data);
+        
+        return this.post
+            .post('/posts/search', {terms})
+            .then( (response) => {
+                console.log(response)
+                return response.data});
     }
     //COMMENTS ROUTES
 
