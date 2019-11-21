@@ -41,7 +41,7 @@ class PostDetails extends Component {
             <>
             {
                 post ?  <div> 
-                <article className='postContainer'>
+                <article className='postContainer randomContainer'>
                     <div className='colorUserInfo'></div>
 
                     <div className='userInfo'>   
@@ -65,7 +65,7 @@ class PostDetails extends Component {
                     
                     <div className='colorContent'></div>
 
-                    <div className='contentContainer randomContainer'>
+                    <div className='contentContainer '>
                         <h2>{post.theme}</h2>
                         <div className='infoDiv'>
                             <p><strong>{post.city}</strong>, {post.country}</p>
