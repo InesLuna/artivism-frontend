@@ -57,7 +57,8 @@ import Slider from "react-slick";
                     { makeThisHappend ?
                     <div className='makecontainer'>
                         <div className='colorMake'></div>
-                        <p className='makeThisHappend'><strong>Make the change happen:</strong><br/><a href={makeThisHappend}>{makeThisHappend}</a></p>
+                        {/* // eslint-disable-next-line react/jsx-no-target-blank */}
+                        <p className='makeThisHappend'><strong>Make the change happen:</strong><br/><a href={makeThisHappend} target="_blank">{makeThisHappend}</a></p>
                     </div>
                         
                         : null

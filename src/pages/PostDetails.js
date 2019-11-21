@@ -78,7 +78,8 @@ class PostDetails extends Component {
                         { post.makeThisHappend ?
                             <div className='makecontainer'>
                                 <div className='colorMake'></div>
-                                <p className='makeThisHappend'><strong>Make the change happen:</strong><br/><a href={post.makeThisHappend}>{post.makeThisHappend}</a></p>
+                                {/* // eslint-disable-next-line react/jsx-no-target-blank */}
+                                <p className='makeThisHappend'><strong>Make the change happen:</strong><br/><a href={post.makeThisHappend} target="_blank">{post.makeThisHappend}</a></p>
                             </div>
                             : null
                         }
