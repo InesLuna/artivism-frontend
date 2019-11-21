@@ -189,6 +189,7 @@ a{
     align-items: center;
     margin-bottom: 80px;
     height: max-content;
+    padding-top: 25px;
 }
 .secondPostContainer{
     padding-bottom: 50px;
@@ -308,6 +309,7 @@ a{
     font-size: 1.5rem;
     font-weight: 800;
     cursor: pointer;
+    word-break: break-all;
 }
 .colorMake{
     height: 10px;
@@ -578,4 +580,8 @@ background-color: rgb(244, 215, 99);
 
 .slick-slider{
     margin-top: -60px;
+}
+
+.randomContainer{
+    padding-top: 120px;
 }

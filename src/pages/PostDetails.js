@@ -65,7 +65,7 @@ class PostDetails extends Component {
                     
                     <div className='colorContent'></div>
 
-                    <div className='contentContainer'>
+                    <div className='contentContainer randomContainer'>
                         <h2>{post.theme}</h2>
                         <div className='infoDiv'>
                             <p><strong>{post.city}</strong>, {post.country}</p>
