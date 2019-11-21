@@ -14,7 +14,7 @@ function UserRoute({ component: Component, isLoggedIn, ...rest }) {
   return (
    <Route
     {...rest}
-    render={ (props)  => isLoggedIn ?<> <TopNavbar {...props} needLogout={true}/> <UserView /><Component {...props} /><BottomNavbar/> </>: <Redirect to="/login" />}
+    render={ (props)  => isLoggedIn ?<> <TopNavbar {...props} needLogout={true}/> <UserView {...props}/><Component {...props} /><BottomNavbar/> </>: <Redirect to="/login" />}
    />
   );
 }
