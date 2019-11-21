@@ -28,7 +28,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import UserRoute from "./routes/UserRoute";
 import firebase from "firebase";
 const config = {
-  apiKey: "AIzaSyD4wuJM2pKGB_bGmqC5SrgL55K4xUBxnak",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "artivism-a0a65.firebaseapp.com",
   databaseURL: "https://artivism-a0a65.firebaseio.com",
   storageBucket: "gs://artivism-a0a65.appspot.com"

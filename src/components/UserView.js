@@ -6,7 +6,7 @@ import { withAuth } from "../services/AuthProvider";
  class UserView extends Component {
      
     render() {
-        //console.log(this.props)
+        console.log(this.props)
         return (
             <div className='userviewContainer'>
                 <div className='colorViewUserInfo'></div>
@@ -22,7 +22,7 @@ import { withAuth } from "../services/AuthProvider";
                 </section>
                 
                 <nav>
-                    <Link to='/user/posts'>Posts</Link>
+                    <Link to='/user/posts'><img src="/images/20068463741530177263.svg" alt=""/></Link>
                     <Link to='/user/notifications'>Notifications</Link>
                 </nav>
             </div>

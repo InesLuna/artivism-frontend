@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#41423F;}
+</style>
+<title>sms_failed</title>
+<desc>Created with Sketch.</desc>
+<g id="Icons">
+	<g id="Outlined" transform="translate(-510.000000, -3700.000000)">
+		<g id="Notification" transform="translate(100.000000, 3600.000000)">
+			<g>
+				<polygon id="Path" class="st0" points="408,98 432,98 432,122 408,122 				"/>
+				<path class="st1" d="M428,100h-16c-1.1,0-2,0.9-2,2v18l4-4h14c1.1,0,2-0.9,2-2v-12C430,100.9,429.1,100,428,100z M428,114h-14.8
+					l-1.2,1.2V102h16V114z M419,110h2v2h-2V110z M419,104h2v4h-2V104z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
